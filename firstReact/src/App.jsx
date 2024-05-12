@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NewTodoForm from "./conponents/NewTodoForm";
 import TodoItem from "./conponents/TodoItem";
+import { HelloKingsley, HelloWorld } from "./conponents";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -33,6 +34,8 @@ function App() {
 
   return (
     <>
+          <HelloWorld></HelloWorld>
+          <HelloKingsley></HelloKingsley>
       <h1>Todo List</h1>
       <NewTodoForm addTodo={addTodo}></NewTodoForm>
       <h2>todo items</h2>

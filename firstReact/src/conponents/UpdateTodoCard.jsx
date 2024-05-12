@@ -1,17 +1,18 @@
 import { useState } from "react";
 
-function UpdateTodoCard({todo, addTodo, onCancel}) {
-  const [newTodo, setTodo] = useState({});
+function UpdateTodoCard({ todo, updateTodo, onCancel }) {
+  const [updatedTodo, setTodo] = useState(todo);
 
   const sumbit = (e) => {
     e.preventDefault();
-    // setTodo({ title: undefined, completed: false });
-    addTodo(todo);
+    console.log('updatedTodo',updatedTodo);
+    updateTodo(updatedTodo);
+    onCancel(false);
   };
 
-  const updateTodo = (newTodo) => {
-    const updateTodo = { ...todo, ...newTodo };
-    setTodo(updateTodo);
+  const updateTodoClick = (newTodo) => {
+    const todo = { ...updatedTodo, ...newTodo };
+    setTodo(todo);
   };
 
   return (
@@ -25,20 +26,25 @@ function UpdateTodoCard({todo, addTodo, onCancel}) {
                 type="text"
                 id="title"
                 name="title"
-                value={todo.title}
+                value={updatedTodo.title}
                 required
-                onChange={(e) => updateTodo({ title: e.target.value })}
+                onChange={(e) => updateTodoClick({ title: e.target.value })}
               />
               <label htmlFor="completed">Completed:</label>
               <input
                 type="checkbox"
                 id="completed"
                 name="completed"
-                defaultChecked={todo.completed}
+                defaultChecked={updatedTodo.completed}
                 onChange={(e) => updateTodo({ completed: e.target.checked })}
               />
               <div className="row">
-                <button className="btn btn-second" onClick={()=>onCancel(false)}>Cancel</button>
+                <button
+                  className="btn btn-second"
+                  onClick={() => onCancel(false)}
+                >
+                  Cancel
+                </button>
                 <button type="submit" className="btn btn-primary">
                   Update
                 </button>
